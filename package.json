@@ -4,10 +4,11 @@
   "description": "Task 1",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./build/app.js"
   },
   "author": "Victor Tihmanovich",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/body-parser": "1.17.0",
     "@types/express": "4.16.0",

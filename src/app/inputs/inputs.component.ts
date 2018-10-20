@@ -54,4 +54,5 @@ export class InputsComponent implements OnInit {
     const greeting = document.querySelector('.greeting-form') as HTMLElement;
     greeting.style.opacity = '0';
   }
+
 }

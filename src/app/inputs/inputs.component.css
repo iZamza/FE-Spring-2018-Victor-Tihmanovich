@@ -1,40 +1,108 @@
-p{
-	color: #369;
-  	font-family: Arial, Helvetica, sans-serif;
-  	margin-bottom: 2px;
+p {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 2px;
 }
 
-.invalid-feedback{
-	color: red;
-	font-family: Arial, Helvetica, sans-serif;
+.invalid-feedback {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-span{
-	max-width: 200px;
-	display: inline-block;
+span {
+  max-width: 200px;
+  display: inline-block;
 }
 
 
-input{
-	width: 100%;
-	border-radius: 3px;
-	border: solid 1px grey;
+input {
+  width: 100%;
+  border-radius: 3px;
+  border: solid 1px grey;
 }
 
-button{
-	flex: 1 1 100%;
-	display: block;
-	margin: 5px auto;
+button {
+  flex: 1 1 100%;
+  display: block;
+  margin: 5px auto;
+  color: white;
+  background-color: #369;
+  border-radius: 3px;
+  border: solid 0.5px grey;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 5px 30px;
+  transition: 0.2s all;
+}
+
+button:hover {
+  background-color: #0f273e;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+
+}
+
+.input-area {
+  flex: 0 1 200px;
+  padding: 10px;
+  background-color: #9e9e9e40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+}
+
+.storage-area {
+  flex: 1 1 50%;
+  margin-left: 10px;
+  min-height: 100%;
+  background-color: #369;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.greeting-form {
+  transition: opacity 0.5s;
+  opacity: 0;
+  width: 50%;
+  margin: 5px;
+  padding: 5px;
+  background-color: #9a5bff;
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+}
+
+.info{
 	color: white;
-	background-color: #369;
-	border-radius: 3px;
-	border: solid 0.5px grey;
-	cursor: pointer;
-	font-size: 0.9em;
-	padding: 5px 30px;
-	transition: 0.2s all;
 }
 
-button:hover{
-	background-color: #0f273e;
+h1 {
+  color: #369;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  flex-basis: 100%;
+}
+
+@media screen and (max-width: 475px) {
+  .input-area {
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-grow: 1;
+  }
+
+  .storage-area {
+    flex-basis: 100%;
+    margin-left: 0px;
+  }
 }

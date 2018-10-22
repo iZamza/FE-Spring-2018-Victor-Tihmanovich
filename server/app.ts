@@ -4,13 +4,13 @@ import * as bodyParser from 'body-parser';
 
 
 interface User {
-  id: number,
-  name: string,
-  password: string,
-  dateOfBirth: string,
-  dateOfFirstLogin: string,
-  dateOfNextNotification: string,
-  information: string
+  id: number;
+  name: string;
+  password: string;
+  dateOfBirth: string;
+  dateOfFirstLogin: string;
+  dateOfNextNotification: string;
+  information: string;
 }
 
 const app: express.Application = express();
@@ -43,8 +43,7 @@ app.get('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  } else {
     response.send(user);
   }
 });
@@ -62,8 +61,7 @@ app.put('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  } else {
     const userIndex = users.findIndex((user: User) => user.id == request.params.id);
     users[userIndex] = request.body;
 
@@ -76,10 +74,9 @@ app.delete('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  } else {
     users = users.filter((user: User) => user.id !== request.params.id);
-    
+
     response.send(users);
   }
 });

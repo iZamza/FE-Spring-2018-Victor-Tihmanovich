@@ -1,0 +1,27 @@
+<div class ='wrapper'>
+<div class='authorization'>
+  <label>
+    <p>User Name: </p> 
+    <input type="text">
+  </label>
+  <label>
+    <p>Password: </p>
+    <input type="password">
+  </label>
+  <button type="submit" [disabled]='loading'>Submit</button>
+  <div class="external-link">
+    <a routerLink = '/input'>New user</a>
+    <a routerLink = '/forgetPassword'>Forget Password?</a>
+  </div>
+</div>
+</div>
+
+<!--<ul>
+  <li *ngFor="let user of users">
+  <p>Имя пользователя: {{user?.name}}</p>
+  <p>Дата родждения: {{user?.birthday}}</p>
+  <p>Пароль: {{user?.password}}</p>
+  <p>Уведомление: {{user?.dateOfNotification}}</p>
+  <p>Дата логина: {{user?.dateOfLogin}}</p>
+  </li>
+</ul> -->

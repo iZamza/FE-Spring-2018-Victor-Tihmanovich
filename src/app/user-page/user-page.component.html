@@ -1,0 +1,5 @@
+<h1>User Page</h1>
+    <ul>
+        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+    </ul>
+<p><a [routerLink]="['/authorization']">Logout</a></p>

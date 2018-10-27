@@ -1,27 +1,26 @@
-<div class ='wrapper'>
-<div class='authorization'>
-  <label>
-    <p>User Name: </p> 
-    <input type="text">
-  </label>
-  <label>
-    <p>Password: </p>
-    <input type="password">
-  </label>
-  <button type="submit" [disabled]='loading'>Submit</button>
-  <div class="external-link">
-    <a routerLink = '/input'>New user</a>
-    <a routerLink = '/forgetPassword'>Forget Password?</a>
+<div class='wrapper'>
+  <div class='authorization'>
+    <form [formGroup]='autharizationForm' (ngSubmit)='onSubmit()'>
+      <label>
+        <p>Username: </p>
+        <input type='text' formControlName='username' [ngClass]="{ 'is-invalid': submitted && autharizationForm.controls.username.errors }">
+        <div *ngIf='submitted && autharizationForm.controls.username.errors' class='invalid-feedback'>
+          <div *ngIf='autharizationForm.controls.username.errors.required'>Username is required</div>
+        </div>
+      </label>
+      <label>
+        <p>Password: </p>
+        <input type='password' formControlName='password' [ngClass]="{ 'is-invalid': submitted && autharizationForm.controls.password.errors }">
+        <div *ngIf='submitted && autharizationForm.controls.password.errors' class='invalid-feedback'>
+          <div *ngIf='autharizationForm.controls.password.errors.required'>Password is required</div>
+        </div>
+      </label>
+      <button type='submit' [disabled]='loading'>Submit</button>
+      <div *ngIf='error' class='invalid-feedback'>{{error}}</div>
+    </form>
+    <div class='external-link'>
+      <a routerLink='/input'>New user</a>
+      <a routerLink='/forgetPassword'>Forget Password?</a>
+    </div>
   </div>
 </div>
-</div>
-
-<ul>
-  <li *ngFor="let user of users">
-  <p>Имя пользователя: {{user?.name}}</p>
-  <p>Дата родждения: {{user?.birthday}}</p>
-  <p>Пароль: {{user?.password}}</p>
-  <p>Уведомление: {{user?.dateOfNotification}}</p>
-  <p>Дата логина: {{user?.dateOfLogin}}</p>
-  </li>
-</ul> 

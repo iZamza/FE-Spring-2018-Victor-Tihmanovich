@@ -12,4 +12,7 @@ export class ForgetPsswordComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendEmail() {
+    alert('Email with instruction was sended to you');
+  }
 }

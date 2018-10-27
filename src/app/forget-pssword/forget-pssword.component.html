@@ -1,3 +1,11 @@
-<p>
-  forget-pssword works!
-</p>
+<div class='wrapper'>
+  <div class='forgotPass'>
+    <h4>Forgot Password</h4>
+    <p>Don't worry! Enter your email below and we'll email you with instruction on how to reset your password.</p>
+    <input type='email' placeholder='Enter your email'>
+    <button type='submit' (click)="sendEmail()">Submit</button>
+    <div class="external-link">
+      <a routerLink='/'>Cancel</a>
+    </div>
+  </div>
+</div>

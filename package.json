@@ -22,7 +22,13 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@types/body-parser": "1.17.0",
+    "@types/express": "4.16.0",
+    "body-parser": "1.18.3",
+    "express": "4.16.3",
+    "cors": "2.8.4",
+    "rootpath": "0.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
@@ -43,6 +49,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "nodemon": "1.18.5"
   }
 }

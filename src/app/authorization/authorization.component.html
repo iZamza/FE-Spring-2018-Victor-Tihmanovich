@@ -1,4 +1,5 @@
 <div class='wrapper'>
+  <div class="load-wrapper" *ngIf='isLoading'><app-loader [loader]="isLoading"></app-loader></div>
   <div class='authorization'>
     <form [formGroup]='autharizationForm' (ngSubmit)='onSubmit()'>
       <label>

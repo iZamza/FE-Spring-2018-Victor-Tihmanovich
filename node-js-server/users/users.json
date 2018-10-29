@@ -3,45 +3,54 @@
 		"id": 1,
 		"username": "Victor",
 		"password": "qwerty",
-		"dateOfBirth": "2001-09-15T15:53:00",
-		"dateOfFirstLogin": "2002-09-15T15:53:00",
-		"dateOfNextNotification": "2003-09-15T15:53:00",
+		"dateOfBirth": "1992/06/17",
+		"dateOfFirstLogin": "28 February 2002",
+		"dateOfNextNotification": "21-apr-2011",
 		"information": "Lorem ipsum"
 	},
 	{
 		"id": 2,
 		"username": "Artyom",
 		"password": "qwerty",
-		"dateOfBirth": "2004-09-15T15:53:00",
-		"dateOfFirstLogin": "2005-09-15T15:53:00",
-		"dateOfNextNotification": "2006-09-15T15:53:00",
+		"dateOfBirth": "1995/07/12",
+		"dateOfFirstLogin": "30 April 2012",
+		"dateOfNextNotification": "21-apr-2018",
 		"information": "Lorem ipsum"
 	},
 	{
 		"id": 3,
 		"username": "Sergey",
 		"password": "qwerty",
-		"dateOfBirth": "2007-09-15T15:53:00",
-		"dateOfFirstLogin": "2008-09-15T15:53:00",
-		"dateOfNextNotification": "2009-09-15T15:53:00",
+		"dateOfBirth": "1996/08/12",
+		"dateOfFirstLogin": "21 May 2003",
+		"dateOfNextNotification": "20-apr-2021",
 		"information": "Lorem ipsum"
 	},
 	{
 		"id": 4,
 		"username": "Vlad",
 		"password": "qwerty",
-		"dateOfBirth": "2010-09-15T15:53:00",
-		"dateOfFirstLogin": "2011-09-15T15:53:00",
-		"dateOfNextNotification": "2012-09-15T15:53:00",
+		"dateOfBirth": "1994/04/14",
+		"dateOfFirstLogin": "24 February 2004",
+		"dateOfNextNotification": "24-apr-2011",
 		"information": "Lorem ipsum"
 	},
 	{
 		"id": 5,
 		"username": "Dmitry",
 		"password": "qwerty",
-		"dateOfBirth": "2013-09-15T15:53:00",
-		"dateOfFirstLogin": "2014-09-15T15:53:00",
-		"dateOfNextNotification": "2015-09-15T15:53:00",
+		"dateOfBirth": "1993/03/13",
+		"dateOfFirstLogin": "23 February 2003",
+		"dateOfNextNotification": "23-apr-2013",
+		"information": "Lorem ipsum"
+	},
+	{
+		"id": 6,
+		"username": "test",
+		"password": "test",
+		"dateOfBirth": "1993/03/13",
+		"dateOfFirstLogin": "23 February 2003",
+		"dateOfNextNotification": "23-apr-2013",
 		"information": "Lorem ipsum"
 	}
 ]

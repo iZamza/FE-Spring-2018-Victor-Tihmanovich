@@ -1,22 +1,23 @@
-﻿// users hardcoded for simplicity, store in a db for production applications
-var users = require('./users.json');
+﻿let users = require('./users.json');
 
 module.exports = {
     authenticate,
     getAll
 };
 
+let currentUser;
+
 async function authenticate({ username, password }) {
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
-        const { password, ...userWithoutPassword } = user;
-        return userWithoutPassword;
+       currentUser = user;
+       return user;
     }
 }
 
 async function getAll() {
-    return users.map(u => {
-        const { password, ...userWithoutPassword } = u;
-        return userWithoutPassword;
-    });
+    const user = users.find(u => u.id === currentUser.id);
+    if(user){
+        return user;
+    }   
 }

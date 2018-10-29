@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { nameValidator } from './validators/name.validator';
-import { rangeValidator } from './validators/range.validator';
-import { numberValidator } from './validators/number.validator';
-import { birthdayDateValidator } from './validators/birthdayDate.validator';
-import { loginDateValidator } from './validators/loginDate.validator';
-import { notificationDateValidator } from './validators/notificationDate.validator';
+import { nameValidator } from '../validators/name.validator';
+import { rangeValidator } from '../validators/range.validator';
+import { numberValidator } from '../validators/number.validator';
+import { birthdayDateValidator } from '../validators/birthdayDate.validator';
+import { loginDateValidator } from '../validators/loginDate.validator';
+import { notificationDateValidator } from '../validators/notificationDate.validator';
 
 @Component({
   selector: 'app-inputs',

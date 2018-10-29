@@ -1,26 +1,18 @@
 ﻿require('rootpath')();
 const express = require('express');
 const app = express();
+const delay = require('express-delay');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const basicAuth = require('_helpers/basic-auth');
-const errorHandler = require('_helpers/error-handler');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(delay(1000));
 
-// use basic HTTP auth to secure the api
-app.use(basicAuth);
-
-// api routes
 app.use('/users', require('./users/users.controller'));
 
-// global error handler
-app.use(errorHandler);
-
-// start server
-const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
-const server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
-});
+const port = 4000;
+app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}/`);
+  });

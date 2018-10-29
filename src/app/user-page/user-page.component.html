@@ -1,5 +1,71 @@
-<h1>User Page</h1>
-    <ul>
-        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-    </ul>
-<p><a [routerLink]="['/authorization']">Logout</a></p>
+<div class="wrapper">
+  <div class="input-area" *ngIf="user">
+    <h2>Hello {{user.username}}!</h2>
+    <p>You're was born: <br>{{user.dateOfBirth}}</p>
+    <p>Your first login: <br>{{user.dateOfFirstLogin}}</p>
+    <p>You will get notification: <br>{{user.dateOfNextNotification}}</p>
+    <p>And this describe you: <br>{{user.information}}</p>
+    <p><a [routerLink]="['/authorization']">Logout</a></p>
+  </div>
+  <div class="storage-area">
+    <div>
+      <h3>If you want change your data, use this form</h3>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <label>
+          <p>User name:</p>
+          <input type="text" formControlName="name">
+          <div *ngIf="submitted && userForm.controls.name.errors" class="invalid-feedback">
+            <div *ngIf="userForm.controls.name.errors.required">Name is required</div>
+          </div>
+          <div *ngIf="userForm.controls.name.touched && userForm.controls.name.errors" class="invalid-feedback">
+            <span *ngIf="userForm.controls.name.errors.moreThenMaxWords">Name must contain only 1 or 2 words</span>
+            <span *ngIf="userForm.controls.name.errors.forbiddenSymbols">Name contain forbidden symbol</span>
+          </div>
+        </label>
+        <label>
+          <p>Birthday:</p>
+          <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD">
+          <div *ngIf="submitted && userForm.controls.birthday.errors" class="invalid-feedback">
+            <div *ngIf="userForm.controls.birthday.errors.required">Date of Birthday is required</div>
+            <span *ngIf="userForm.controls.birthday.errors.notSuchDate">Not such date, valid date format: YYYY/MM/DD</span>
+            <span *ngIf="userForm.controls.birthday.errors.notNumberDate">Date must have only number</span>
+            <span *ngIf="userForm.controls.birthday.errors.leapYear">This is leap year</span>
+            <span *ngIf="userForm.controls.birthday.errors.lengthError">Date consist from 3 number</span>
+          </div>
+        </label>
+        <label>
+          <p>Date of login:</p>
+          <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY">
+          <div *ngIf="submitted && userForm.controls.dateOfLogin.errors" class="invalid-feedback">
+            <div *ngIf="userForm.controls.dateOfLogin.errors.required">Date of login is required</div>
+            <span *ngIf="userForm.controls.dateOfLogin.errors.notSuchDate">Not such date, valid date format: DD MMMM
+              YYYY</span>
+            <span *ngIf="userForm.controls.dateOfLogin.errors.notNumberDate">Date must have only number</span>
+            <span *ngIf="userForm.controls.dateOfLogin.errors.leapYear">This is leap year</span>
+            <span *ngIf="userForm.controls.dateOfLogin.errors.lengthError">Date consist from 3 number</span>
+            <span *ngIf="userForm.controls.dateOfLogin.errors.monthError">Invalid Month (Please, use the full name of
+              the
+              month)</span>
+          </div>
+        </label>
+        <label>
+          <p>Date of notification:</p>
+          <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY">
+          <div *ngIf="submitted && userForm.controls.dateOfNotification.errors" class="invalid-feedback">
+            <div *ngIf="userForm.controls.dateOfNotification.errors.required">Date of notification is required</div>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.notSuchDate">Not such date, valid date format:
+              DD-MMM-YY</span>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.notNumberDate">Date must have only number</span>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.leapYear">This is leap year</span>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.lengthError">Date consist from 3 number</span>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.monthError">Invalid Month (Please, use the short
+              name of the month(3 symbols))</span>
+            <span *ngIf="userForm.controls.dateOfNotification.errors.notValidYear">Please, use only 2 number in the
+              year</span>
+          </div>
+        </label>
+        <button type="submit" [disabled]="loading">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

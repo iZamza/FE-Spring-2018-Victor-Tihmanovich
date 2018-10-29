@@ -1,0 +1,119 @@
+p,
+h2 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 2px;
+}
+
+.invalid-feedback {
+  color: red;
+  background-color: azure;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+span {
+  max-width: 200px;
+  display: inline-block;
+}
+
+
+input {
+  width: 100%;
+  border-radius: 3px;
+  border: solid 1px grey;
+}
+
+button,
+a {
+  text-decoration: none;
+  flex: 1 1 100%;
+  display: block;
+  margin: 5px auto;
+  color: white;
+  background-color: #369;
+  border-radius: 3px;
+  border: solid 0.5px grey;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 5px 30px;
+  transition: 0.2s all;
+}
+
+button:hover,
+a:hover {
+  background-color: #0f273e;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+
+}
+
+.input-area {
+  text-align: center;
+  flex: 0 1 200px;
+  padding: 10px;
+  background-color: #9e9e9e40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+}
+
+.storage-area {
+  flex: 1 1 50%;
+  margin-left: 10px;
+  min-height: 100%;
+  background-color: #369;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-radius: 5px;
+  color: white;
+}
+
+.storage-area>h3 {
+  font-weight: 100;
+}
+
+.storage-area>div {
+  flex-direction: column;
+  padding: 10px;
+}
+
+label>p {
+  color: white;
+}
+
+.info {
+  color: white;
+}
+
+h1 {
+  color: #369;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  flex-basis: 100%;
+}
+
+@media screen and (max-width: 475px) {
+  .input-area {
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+    flex-grow: 1;
+  }
+
+  .storage-area {
+    flex-basis: 100%;
+    margin-left: 0px;
+    justify-content: center;
+  }
+}

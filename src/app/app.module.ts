@@ -11,6 +11,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { ForgetPsswordComponent } from './forget-pssword/forget-pssword.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { AuthGuard } from './guards';
+import { LoaderComponent } from './loader/loader.component';
 
 const appRoutes: Routes = [
   {path: '', component: UserPageComponent, canActivate: [AuthGuard]},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     InputsComponent,
     AuthorizationComponent,
     ForgetPsswordComponent,
-    UserPageComponent
+    UserPageComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

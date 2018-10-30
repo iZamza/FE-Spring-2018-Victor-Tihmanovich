@@ -2,8 +2,8 @@ require('rootpath')();
 import * as express from 'express';
 import { Request, Response } from 'express';
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
-import * as delay from 'express-delay';
+const delay = require('express-delay');
+const cors = require('cors');
 
 interface User {
   id: number;
@@ -31,14 +31,14 @@ app.use('/users', require('./users/users.controller'));
 let users: User[] = require('./users.json');
 
 const findUser = (request: Request) => {
-  return users.find((user: User) => user.id == request.params.id);
+  return users.find((user: User) => user.id === request.params.id);
 };
 
 const userNotFoundError = (response: Response) => {
   response.statusCode = 404;
 
   response.send('There is no users with such id!');
-}
+};
 
 app.get('/users', (_, response) => {
   response.send(users);
@@ -68,7 +68,7 @@ app.put('/users/:id', (request, response) => {
   if (!user) {
     userNotFoundError(response);
   }  else {
-    const userIndex = users.findIndex((user: User) => user.id == request.params.id);
+    const userIndex = users.findIndex((user: User) => user.id === request.params.id);
     users[userIndex] = request.body;
 
     response.send(users[userIndex]);

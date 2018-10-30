@@ -1,28 +1,34 @@
+require('rootpath')();
 import * as express from 'express';
 import { Request, Response } from 'express';
 import * as bodyParser from 'body-parser';
-
+import * as cors from 'cors';
+import * as delay from 'express-delay';
 
 interface User {
-  id: number,
-  name: string,
-  password: string,
-  dateOfBirth: string,
-  dateOfFirstLogin: string,
-  dateOfNextNotification: string,
-  information: string
+  id: number;
+  name: string;
+  password: string;
+  dateOfBirth: string;
+  dateOfFirstLogin: string;
+  dateOfNextNotification: string;
+  information: string;
 }
 
 const app: express.Application = express();
-const port: number = 8888;
+const port = 8888;
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+app.use(delay(1000));
 app.use((_, response, next) => {
   response.header('Content-Type', 'application/json');
   next();
 });
+app.use('/users', require('./users/users.controller'));
 
-let users: User[] = require('./users.json')
+let users: User[] = require('./users.json');
 
 const findUser = (request: Request) => {
   return users.find((user: User) => user.id == request.params.id);
@@ -43,8 +49,7 @@ app.get('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  } else {
     response.send(user);
   }
 });
@@ -62,8 +67,7 @@ app.put('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  }  else {
     const userIndex = users.findIndex((user: User) => user.id == request.params.id);
     users[userIndex] = request.body;
 
@@ -76,10 +80,8 @@ app.delete('/users/:id', (request, response) => {
 
   if (!user) {
     userNotFoundError(response);
-  }
-  else {
+  }  else {
     users = users.filter((user: User) => user.id !== request.params.id);
-    
     response.send(users);
   }
 });

@@ -1,11 +1,10 @@
 {
-    "name": "node-basic-authentication-api",
-    "version": "1.0.0",
-    "description": "NodeJS Basic HTTP Authentication API",
+    "name": "server-api",
+    "version": "0.0.0",
+    "description": "",
     "license": "MIT",
     "repository": {
-        "type": "git",
-        "url": "https://github.com/cornflourblue/node-basic-authentication-api.git"
+        "type": "git"
     },
     "scripts": {
         "start": "nodemon ./server.js"

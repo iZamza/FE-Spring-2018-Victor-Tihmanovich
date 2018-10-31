@@ -1,27 +1,36 @@
+<div class="change-lang">
+  <span class="change-lang-text">{{ 'Authorization.greeting' | translate }}</span>
+      <label>
+        {{ 'Authorization.choose-lang' | translate }}
+        <select #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
+      </label>
+</div>
 <div class='wrapper'>
   <div class="load-wrapper" *ngIf='isLoading'><app-loader [loader]="isLoading"></app-loader></div>
   <div class='authorization'>
     <form [formGroup]='autharizationForm' (ngSubmit)='onSubmit()'>
       <label>
-        <p>Username: </p>
+        <p>{{ 'Authorization.name' | translate }}</p>
         <input type='text' formControlName='username' [ngClass]="{ 'is-invalid': submitted && autharizationForm.controls.username.errors }">
         <div *ngIf='submitted && autharizationForm.controls.username.errors' class='invalid-feedback'>
-          <div *ngIf='autharizationForm.controls.username.errors.required'>Username is required</div>
+          <div *ngIf='autharizationForm.controls.username.errors.required'>{{ 'Authorization.name' | translate }} {{ 'Authorization.required' | translate }}</div>
         </div>
       </label>
       <label>
-        <p>Password: </p>
+        <p>{{ 'Authorization.password' | translate }}</p>
         <input type='password' formControlName='password' [ngClass]="{ 'is-invalid': submitted && autharizationForm.controls.password.errors }">
         <div *ngIf='submitted && autharizationForm.controls.password.errors' class='invalid-feedback'>
-          <div *ngIf='autharizationForm.controls.password.errors.required'>Password is required</div>
+          <div *ngIf='autharizationForm.controls.password.errors.required'>{{ 'Authorization.password' | translate }} {{ 'Authorization.required' | translate }}</div>
         </div>
       </label>
-      <button type='submit' [disabled]='loading'>Submit</button>
+      <button type='submit' [disabled]='loading'>{{'Authorization.submit' | translate}}</button>
       <div *ngIf='error' class='invalid-feedback'>{{error}}</div>
     </form>
     <div class='external-link'>
-      <a routerLink='/input'>New user</a>
-      <a routerLink='/forgetPassword'>Forget Password?</a>
+      <a routerLink='/input'>{{'Authorization.newUser' | translate}}</a>
+      <a routerLink='/forgetPassword'>{{'Authorization.forgetPass' | translate}}</a>
     </div>
   </div>
 </div>

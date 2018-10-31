@@ -1,0 +1,13 @@
+{
+  "Authorization": {
+    "greeting": "Welcome to Angular CLI SPringFE-training",
+    "choose-lang": "Change lang",
+    "name": "Username",
+    "password": "password",
+    "required": "is required",
+    "submit": "Submit",
+    "newUser": "New user",
+    "forgetPass": "Forget Password?",
+    "cancel": "cancel"
+  }
+}

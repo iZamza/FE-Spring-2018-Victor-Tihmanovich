@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-authorization',
@@ -19,7 +20,11 @@ export class AuthorizationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService) {}
+    private authenticationService: AuthenticationService,
+    public translate: TranslateService) {
+    translate.addLangs(['en', 'rus']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit() {
     this.autharizationForm = this.formBuilder.group({

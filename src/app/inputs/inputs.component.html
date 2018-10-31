@@ -74,3 +74,87 @@
     </div>
   </div>
 </div>
+<!-- <div class="change-lang">
+  <span class="change-lang-text">{{ 'Authorization.greeting' | translate }}</span>
+      <label>
+        {{ 'Authorization.choose-lang' | translate }}
+        <select #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
+      </label>
+</div>
+<div class="wrapper">
+  <div class="input-area">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" (change)="Changing()">
+      <label>
+        <p>{{ 'Authorization.name' | translate }}</p>
+        <input type="text" formControlName="name">
+        <div *ngIf="submitted && userForm.controls.name.errors" class="invalid-feedback">
+          <div *ngIf="userForm.controls.name.errors.required">{{ 'Authorization.name' | translate }} {{ 'Authorization.required' | translate }}</div>
+        </div>
+        <div *ngIf="userForm.controls.name.touched && userForm.controls.name.errors" class="invalid-feedback">
+          <span *ngIf="userForm.controls.name.errors.moreThenMaxWords">{{ 'Authorization.name' | translate }} {{ 'Validators.containTwo' | translate }}</span>
+          <span *ngIf="userForm.controls.name.errors.forbiddenSymbols">{{ 'Validators.containForbidden' | translate }}</span>
+        </div>
+      </label>
+      <label>
+        <p>{{ 'Validators.age' | translate }}</p>
+        <input type="text" formControlName="age">
+        <div *ngIf="submitted && userForm.controls.age.errors" class="invalid-feedback">
+          <div *ngIf="userForm.controls.age.errors.required">{{ 'Validators.age' | translate }} {{ 'Authorization.required' | translate }}</div>
+          <span *ngIf="userForm.controls.age.errors.numberError">{{ 'Validators.age' | translate }} {{ 'Validators.mustBeNumber' | translate }}</span>
+          <span *ngIf="userForm.controls.age.errors.rangeError">{{ 'Validators.age' | translate }} {{ 'Validators.mustBeBetween' | translate }}</span>
+        </div>
+      </label>
+      <label>
+        <p>{{ 'Validators.birthday' | translate }}:</p>
+        <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD">
+        <div *ngIf="submitted && userForm.controls.birthday.errors" class="invalid-feedback">
+          <div *ngIf="userForm.controls.birthday.errors.required">{{ 'Validators.birthday' | translate }} {{ 'Authorization.required' | translate }}</div>
+          <span *ngIf="userForm.controls.birthday.errors.notSuchDate">{{ 'Validators.notSuchDate' | translate }}: YYYY/MM/DD</span>
+          <span *ngIf="userForm.controls.birthday.errors.notNumberDate">{{ 'Validators.onlyNumber' | translate }}</span>
+          <span *ngIf="userForm.controls.birthday.errors.leapYear">{{ 'Validators.leapYear' | translate }}</span>
+          <span *ngIf="userForm.controls.birthday.errors.lengthError">{{ 'Validators.only3Number' | translate }}</span>
+        </div>
+      </label>
+      <label>
+        <p>{{ 'Validators.DateOfLogin' | translate }}:</p>
+        <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY">
+        <div *ngIf="submitted && userForm.controls.dateOfLogin.errors" class="invalid-feedback">
+          <div *ngIf="userForm.controls.dateOfLogin.errors.required">{{ 'Validators.DateOfLogin' | translate }} {{ 'Authorization.required' | translate }}</div>
+          <span *ngIf="userForm.controls.dateOfLogin.errors.notSuchDate">{{ 'Validators.notSuchDate' | translate }}: DD MMMM YYYY</span>
+          <span *ngIf="userForm.controls.dateOfLogin.errors.notNumberDate">{{ 'Validators.onlyNumber' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfLogin.errors.leapYear">{{ 'Validators.leapYear' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfLogin.errors.lengthError">{{ 'Validators.only3Number' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfLogin.errors.monthError">{{ 'Validators.invalidMonth' | translate }} {{ 'Validators.useFullName' | translate }}</span>
+        </div>
+      </label>
+      <label>
+        <p>{{ 'Validators.DateOfNotification' | translate }}:</p>
+        <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY">
+        <div *ngIf="submitted && userForm.controls.dateOfNotification.errors" class="invalid-feedback">
+          <div *ngIf="userForm.controls.dateOfNotification.errors.required">{{ 'Validators.DateOfNotification' | translate }} {{ 'Authorization.required' | translate }}</div>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.notSuchDate">{{ 'Validators.notSuchDate' | translate }}:
+            DD-MMM-YY</span>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.notNumberDate">{{ 'Validators.onlyNumber' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.leapYear">{{ 'Validators.leapYear' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.lengthError">{{ 'Validators.only3Number' | translate }}</span>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.monthError">{{ 'Validators.invalidMonth' | translate }} {{ 'Validators.useFullName' | translate }} </span>
+          <span *ngIf="userForm.controls.dateOfNotification.errors.notValidYear">{{ 'Validators.twoNumbInYear' | translate }}</span>
+        </div>
+      </label>
+      <button type="submit" [disabled]="loading">{{ 'Authorization.submit' | translate }}</button>
+    </form>
+  </div>
+  
+  <div class="storage-area">
+    <div class="greeting-form">
+      <h3> {{ 'Validators.Hello' | translate }}, <span class="name-value"></span>!</h3>
+      <p class="info">{{ 'Validators.You' | translate }} <span class="age-value"></span> {{ 'Validators.itsEnought' | translate }}</p>
+      <p class="info">{{ 'Validators.You' | translate }} {{ 'Validators.born' | translate }}: <span class="date-of-birdth-value"></span></p>
+      <p class="info">{{ 'Validators.DateOfLogin' | translate }}: <span class="date-of-login-value"></span></p>
+      <p class="info">{{ 'Validators.DateOfNotification' | translate }}: <span class="date-of-notification-value"></span></p>
+    </div>
+  </div>
+</div>
+-->

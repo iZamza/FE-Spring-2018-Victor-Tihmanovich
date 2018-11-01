@@ -1,3 +1,20 @@
+.change-lang{
+  width: 95%;
+  height: 30px;
+  color: white;
+  margin: 0 auto;
+  background-color: #369;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+
+.change-lang-text, .cahge-lang>label{
+  flex: 1 1 30%;
+  color: white;
+}
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;

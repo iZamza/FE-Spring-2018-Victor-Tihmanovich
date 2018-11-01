@@ -9,5 +9,31 @@
     "newUser": "New user",
     "forgetPass": "Forget Password?",
     "cancel": "cancel"
+  },
+  "Forgot": {
+    "greeting": "Page for send password to Email",
+    "Bigmess": "Don't worry! Enter your email below and we'll email you with instruction on how to reset your password."
+  },
+  "Validators": {
+    "containTwo": "must contain only 1 or 2 words",
+    "containForbidden": "Name contain forbidden symbol",
+    "age": "Age",
+    "mustBeNumber": "must be number",
+    "mustBeBetween":"must be 18-65",
+    "birthday": "Birthday",
+    "notSuchDate": "Not such date, valid date format",
+    "onlyNumber": "Date must have only number",
+    "leapYear": "This is leap year",
+    "only3Number": "Date consist from 3 number",
+    "invalidMonth": "Invalid Month",
+    "useFullName": "(Please, use the full name of the month)",
+    "shortMonth": "(Please, use the short name of the month(3 symbols))",
+    "twoNumbInYear": "Please, use only 2 number in the year",
+    "DateOfLogin":"Date of login",
+    "DateOfNotification": "Date of notification",
+    "Hello": "Hello",
+    "You": "You're",
+    "itsEnought": "years old, and it's enough to use our service",
+    "born": "was born"
   }
 }

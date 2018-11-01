@@ -6,6 +6,7 @@ import { numberValidator } from '../validators/number.validator';
 import { birthdayDateValidator } from '../validators/birthdayDate.validator';
 import { loginDateValidator } from '../validators/loginDate.validator';
 import { notificationDateValidator } from '../validators/notificationDate.validator';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inputs',
@@ -15,7 +16,11 @@ import { notificationDateValidator } from '../validators/notificationDate.valida
 export class InputsComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    public translate: TranslateService) {
+      translate.addLangs(['en', 'rus']);
+      translate.setDefaultLang('en');
+    }
 
   ngOnInit() {
     const minAge = 18;

@@ -1,11 +1,20 @@
+<div class="change-lang">
+  <span class="change-lang-text">{{ 'Forgot.greeting' | translate }}</span>
+      <label>
+        {{ 'Authorization.choose-lang' | translate }}
+        <select #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
+      </label>
+</div>
 <div class='wrapper'>
   <div class='forgotPass'>
-    <h4>Forgot Password</h4>
-    <p>Don't worry! Enter your email below and we'll email you with instruction on how to reset your password.</p>
+    <h4>{{'Authorization.forgetPass' | translate}}</h4>
+    <p>{{ 'Forgot.Bigmess' | translate }}</p>
     <input type='email' placeholder='Enter your email'>
-    <button type='submit' (click)="sendEmail()">Submit</button>
+    <button type='submit' (click)="sendEmail()">{{'Authorization.submit' | translate}}</button>
     <div class="external-link">
-      <a routerLink='/'>Cancel</a>
+      <a routerLink='/'>{{'Authorization.cancel' | translate}}</a>
     </div>
   </div>
 </div>

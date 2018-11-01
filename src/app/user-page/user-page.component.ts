@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
 import { UserService } from '../services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { nameValidator } from '../validators/name.validator';
@@ -20,9 +19,7 @@ export class UserPageComponent implements OnInit {
   constructor(private userService: UserService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.userService.getAll().pipe(first()).subscribe(user => {
-      this.user = user;
-    });
+    this.user = this.userService.currentUser();
     const minAge = 18;
     const maxAge = 65;
     this.userForm = this.formBuilder.group({

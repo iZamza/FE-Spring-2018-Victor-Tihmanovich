@@ -7,7 +7,7 @@ import { User } from '../models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User>('http://localhost:4000/users');
+    currentUser() {
+        return JSON.parse(localStorage.getItem('currentUser'));
     }
 }

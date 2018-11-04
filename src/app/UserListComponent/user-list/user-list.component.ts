@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../services/search.service';
-import { renderUser } from '../helpers/renderUser';
+import { SearchService } from './search.service';
+import { renderUser } from './renderUser';
 
 @Component({
   selector: 'app-user-list',

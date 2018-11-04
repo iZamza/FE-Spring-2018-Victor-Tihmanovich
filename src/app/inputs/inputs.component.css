@@ -123,3 +123,25 @@ h1 {
     margin-left: 0px;
   }
 }
+
+#home {
+  width: 30%;
+  display: block;
+  margin: 5px auto;
+  color: white;
+  background-color: #369;
+  border-radius: 3px;
+  border: solid 0.5px #369;
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 5px 30px;
+  transition: 0.2s all;
+  text-decoration: none;
+  text-align: center;
+}
+
+#home:hover {
+  background-color: #0f273e;
+  color: white;
+  border-color: #0f273e;
+}

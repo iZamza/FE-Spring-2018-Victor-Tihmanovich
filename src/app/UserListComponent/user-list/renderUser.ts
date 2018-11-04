@@ -1,4 +1,4 @@
-import { User } from '../models';
+import { User } from './user';
 
 export function renderUser(object: User) {
     document.querySelector('.user-name').innerHTML = object.username;

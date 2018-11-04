@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="combobox-wrapper">
+    <div class="header">
+      <div class='result'>
+        <p class='user-name'></p>
+        <p class='birthday'></p>
+        <p class='description'></p>
+        <p class='date-of-login'></p>
+      </div>
+      <button (click)='toggleDrop()'>▼</button>
+    </div>
+    <div class='myDropper'>
+      <input type='text' id='filterInput' placeholder="search User" (keyup)='filterUser()'>
+      <div class='search-wrapper'>
+        <div class='user-from-list' *ngFor='let user of users; let i = index' [attr.data-index]='i' (click)='activeUser($event)'>
+          <p>Name of user: {{ user.username }}</p>
+          <p>Birthday: {{ user.dateOfBirth }}</p>
+          <p>Last notification: {{ user.dateOfNextNotification }}</p>
+          <p>Description: {{ user.information }} </p>
+          <p>Date of login: {{ user.dateOfFirstLogin }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button><a routerLink='/authorization'>Go to main page</a></button>

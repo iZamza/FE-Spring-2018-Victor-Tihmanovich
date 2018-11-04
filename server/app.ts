@@ -16,6 +16,11 @@ const app: express.Application = express();
 const port = 4000;
 const delay = require('express-delay');
 
+app.use(function(__, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 app.use(delay(1000));
 app.use(bodyParser.json());
 app.use((_, response, next) => {

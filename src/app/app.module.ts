@@ -14,6 +14,7 @@ import { ForgetPsswordComponent } from './forget-pssword/forget-pssword.componen
 import { UserPageComponent } from './user-page/user-page.component';
 import { AuthGuard } from './guards';
 import { LoaderComponent } from './loader/loader.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'authorization', component: AuthorizationComponent},
   {path: 'forgetPassword', component: ForgetPsswordComponent},
   {path: 'input', component: InputsComponent},
+  {path: 'search', component: UserListComponent},
   {path: '**', redirectTo: ''}
 ];
 
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     AuthorizationComponent,
     ForgetPsswordComponent,
     UserPageComponent,
-    LoaderComponent
+    LoaderComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

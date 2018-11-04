@@ -8,7 +8,8 @@
     "submit": "Submit",
     "newUser": "New user",
     "forgetPass": "Forget Password?",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "search": "Search users"
   },
   "Forgot": {
     "greeting": "Page for send password to Email",

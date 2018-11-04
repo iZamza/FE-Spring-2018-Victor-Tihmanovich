@@ -1,6 +1,5 @@
 .change-lang{
   width: 95%;
-  height: 30px;
   color: white;
   margin: 0 auto;
   background-color: #369;
@@ -8,6 +7,11 @@
   justify-content: space-around;
   align-items: center;
   padding: 5px;
+}
+
+.change-lang>a{
+  color: white;
+  margin-right: 5px; 
 }
 
 .change-lang-text, .cahge-lang>label{

@@ -20,8 +20,6 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.currentUser();
-    const minAge = 18;
-    const maxAge = 65;
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required, nameValidator],
       birthday: ['', [Validators.required, birthdayDateValidator('/')]],

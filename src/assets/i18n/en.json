@@ -9,7 +9,8 @@
     "newUser": "New user",
     "forgetPass": "Forget Password?",
     "cancel": "cancel",
-    "search": "Search users"
+    "search": "Search users",
+    "tree": "Tree item list"
   },
   "Forgot": {
     "greeting": "Page for send password to Email",

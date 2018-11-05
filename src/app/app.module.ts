@@ -15,8 +15,10 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { AuthGuard } from './guards';
 import { LoaderComponent } from './loader/loader.component';
 import { SearchUserComponent } from './search-user/search-user.component';
+import { ForTreeComponent } from './for-tree/for-tree.component';
 
 import { UserListModule } from './UserListComponent/user-list.module';
+import { TreeListModule } from './tree-list/tree-list.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -28,6 +30,7 @@ const appRoutes: Routes = [
   {path: 'forgetPassword', component: ForgetPsswordComponent},
   {path: 'input', component: InputsComponent},
   {path: 'search', component: SearchUserComponent},
+  {path: 'treeList', component: ForTreeComponent},
   {path: '**', redirectTo: ''}
 ];
 
@@ -40,6 +43,7 @@ const appRoutes: Routes = [
     UserPageComponent,
     LoaderComponent,
     SearchUserComponent,
+    ForTreeComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ const appRoutes: Routes = [
       }
     }),
     UserListModule,
+    TreeListModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

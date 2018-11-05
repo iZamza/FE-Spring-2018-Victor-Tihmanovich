@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="combobox-wrapper">
+    <div class="header">
+      <div class='path-in-the-tree result'>Path in the tree</div>
+    </div>
+    <input type='text' id='filterInput' placeholder="search by label in the tree">
+    <div class='search-wrapper'>
+      <ul class="item-wrapper">
+        <div class='root-item'>Root Item</div>
+        <div class='item' *ngFor='let item of itemList; let i = index' [attr.data-index]='i+1' (click)='chooseItem($event)'>
+          Item{{i+1}}
+        </div>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+

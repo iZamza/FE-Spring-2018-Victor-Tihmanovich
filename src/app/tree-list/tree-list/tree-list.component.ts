@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreeListComponent implements OnInit {
   itemList;
+  deep = 0;
   itemPath = [];
   constructor() { }
   ngOnInit() {
@@ -15,36 +16,42 @@ export class TreeListComponent implements OnInit {
 
   createList() {
     const arrayList = new Array(100);
-    this.itemList = arrayList.fill(' ', 0, 100);
+    this.itemList = arrayList.fill('Item', 0, 100);
+  }
+
+  getDeep() {
+   return this.deep;
   }
 
   chooseItem(event) {
     const currentItem: HTMLElement = event.target;
+    const itemClassName = event.target.className;
+    const itemDeep = event.target.dataset.deep;
+    // const parrentDeep = event.target.parentElement.dataset.deep;
     const numberOfItem: number = event.target.dataset.index;
-    this.itemPath.push(numberOfItem);
-    currentItem.classList.remove('item');
-    currentItem.classList.add('current-item');
-    const items = document.querySelectorAll('.item');
-    this.deleteItems(items);
-    this.createNewList(currentItem);
+    // console.log(itemDeep, this.deep);
+    if(itemClassName === 'item') {
+      this.itemPath.push(numberOfItem);
+      this.createNewItemList(currentItem);
+      currentItem.className = 'active-item';
+    } else if( itemClassName === 'active-item' ) {
+      currentItem.className = 'item';
+      currentItem.innerHTML = 'Item' + numberOfItem;
+      this.itemPath.splice(itemDeep, this.deep);
+    }
   }
 
-  deleteItems(elements) {
-    elements.forEach(elem => elem.parentNode.removeChild(elem));
-  }
 
-  createNewList(currentItem) {
-    const newItems = document.createElement('div');
-    this.setManyAttribute(newItems, {"class": "item",
-    "*ngFor" : "let item of itemList; let i = index",
-    "[attr.data-index]" : "i+1",
-    "(click)" : "chooseItem($event)"});
-    currentItem.appendChild(newItems);
-  }
-
-  setManyAttribute(element, attributes) {
-    for(let key in attributes) {
-      element.setAttribute(key, attributes[key]);
+  createNewItemList(currentItem) {
+    // this.deep++;
+    for(let i = 1; i < this.itemList.length+1; i++) {
+      const newItem = document.createElement('div');
+      newItem.innerHTML = 'Item' + i;
+      newItem.style.marginLeft = '10px';
+      newItem.setAttribute('data-index', i);
+      // newItem.setAttribute('data-deep', this.deep);
+      newItem.classList.add('item');
+      currentItem.appendChild(newItem);
     }
   }
 

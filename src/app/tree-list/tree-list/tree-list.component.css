@@ -24,12 +24,12 @@
   .result {
     min-height: 50px;
     min-width: 500px;
-    width: 70%;
-  }
-  
-  .result>p {
+    max-width: 70%;
     margin: 0 auto;
-    color: #369;
+  }
+
+  .result>a{
+    color: grey;
   }
   
   .search-wrapper {
@@ -72,7 +72,7 @@
     color: yellow;
     border-color: #0f273e;
   }
-  
-  .item, .current-item{
-    margin-left: 5px;
-  }
+
+.active-item, .item{
+  cursor: pointer;
+}

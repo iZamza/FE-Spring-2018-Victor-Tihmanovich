@@ -2,15 +2,16 @@
   <div class="combobox-wrapper">
     <div class="header">
       <div class='path-in-the-tree result'>
-        <a *ngFor='let itemFromPath of itemPath'> Item {{itemFromPath}} | </a> 
+        Path to selected item:
+        <span *ngFor='let itemFromPath of itemPath'> Item {{itemFromPath}} → </span>
       </div>
     </div>
     <input type='text' id='filterInput' placeholder="search by label in the tree" (input)='filterItems()'>
-    <div class='search-wrapper' data-deep='0'>
-        <div class='item' *ngFor='let item of itemList; let i = index' [attr.data-index]='i+1' [attr.data-deep] = 'getDeep()' (click)='chooseItem($event)'>
-          {{item}}{{i+1}}
-        </div>
+    <div class='search-wrapper' data-path='Root'>
+      <div class='item' *ngFor='let item of itemList; let i = index' [attr.data-index]='i+1' [attr.data-path]='i+1'
+        (click)='chooseItem($event)'>
+        {{item}}{{i+1}}
+      </div>
     </div>
   </div>
 </div>
-

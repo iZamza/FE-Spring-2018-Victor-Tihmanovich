@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreeListComponent implements OnInit {
   itemList;
-  deep = 0;
   itemPath = [];
   constructor() {}
   ngOnInit() {
@@ -19,42 +18,39 @@ export class TreeListComponent implements OnInit {
     this.itemList = arrayList.fill('Item', 0, 100);
   }
 
-  getDeep() {
-    return this.deep;
-  }
-
   chooseItem(event) {
     const currentItem: HTMLElement = event.target;
     const itemClassName = event.target.className;
-    const parrentDeep = event.target.parentElement.dataset.deep;
-    const numberOfItem: number = event.target.dataset.index;
-    if (parrentDeep < this.deep) {
-      this.deep += parrentDeep;
-    }
+    const numberOfItem = event.target.dataset.index;
+    const path = event.target.dataset.path;
     if (itemClassName === 'item') {
-      this.itemPath.push(numberOfItem);
-      this.createNewItemList(currentItem);
+      this.createNewItemList(currentItem, path, numberOfItem);
       currentItem.className = 'active-item';
     } else if (itemClassName === 'active-item') {
       currentItem.className = 'item';
       currentItem.innerHTML = 'Item' + numberOfItem;
-      this.itemPath.splice(parrentDeep, this.itemPath.length);
     }
+    this.checkPath(path, numberOfItem);
   }
 
-  createNewItemList(currentItem) {
-    this.deep++;
-    const currentDeep = this.deep.toString();
+  createNewItemList(currentItem, path, numberOfItem) {
     for (let i = 1; i < this.itemList.length + 1; i++) {
       const index = i.toString();
       const newItem = document.createElement('div');
-      newItem.innerHTML = 'Item' + index;
+      newItem.innerHTML = 'Item' + i;
       newItem.style.marginLeft = '10px';
       newItem.setAttribute('data-index', index);
-      newItem.setAttribute('data-deep', currentDeep);
+      newItem.setAttribute('data-path', `${path}+${numberOfItem}`);
       newItem.classList.add('item');
       currentItem.appendChild(newItem);
     }
+  }
+
+  checkPath(path, numberOfItem) {
+    const currentPath = path.split('+');
+    currentPath.push(numberOfItem);
+    currentPath.shift();
+    this.itemPath = currentPath;
   }
 
   filterItems() {

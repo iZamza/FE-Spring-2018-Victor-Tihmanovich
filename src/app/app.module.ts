@@ -19,6 +19,7 @@ import { ForTreeComponent } from './for-tree/for-tree.component';
 
 import { UserListModule } from './UserListComponent/user-list.module';
 import { TreeListModule } from './tree-list/tree-list.module';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     LoaderComponent,
     SearchUserComponent,
     ForTreeComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,

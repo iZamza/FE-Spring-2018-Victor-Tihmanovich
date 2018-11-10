@@ -1,19 +1,26 @@
 <div class="wrapper">
-  <div class="input-area" *ngIf="user">
-    <h2>Hello {{user.username}}!</h2>
-    <p>You're was born: <br>{{user.dateOfBirth}}</p>
-    <p>Your first login: <br>{{user.dateOfFirstLogin}}</p>
-    <p>You will get notification: <br>{{user.dateOfNextNotification}}</p>
-    <p>And this describe you: <br>{{user.information}}</p>
-    <p><a [routerLink]="['/authorization']">Logout</a></p>
+  <h3> Administration </h3>
+  <div class="user-search">
+    <div class='myDropper'>
+      <input type='text' id='filterInput' placeholder="search User" (keyup)='filterUser()'>
+      <div class='search-wrapper'>
+        <div class='user-from-list' *ngFor='let user of users; let i = index' [attr.data-index]='i' (click)='activeUser($event)'>
+          <p>Name of user: {{ user.username }}</p>
+          <p>Birthday: {{ user.dateOfBirth }}</p>
+          <p>Last notification: {{ user.dateOfNextNotification }}</p>
+          <p>Description: {{ user.information }} </p>
+          <p>Date of login: {{ user.dateOfFirstLogin }} </p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="storage-area">
+  <div class="change-area">
     <div>
-      <h3>If you want change your data, use this form</h3>
+      <h3>If you want change user data, or add new user, use this form</h3>
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <label>
           <p>User name:</p>
-          <input type="text" formControlName="name">
+          <input type="text" formControlName="name" id='name'>
           <div *ngIf="submitted && userForm.controls.name.errors" class="invalid-feedback">
             <div *ngIf="userForm.controls.name.errors.required">Name is required</div>
           </div>
@@ -24,7 +31,7 @@
         </label>
         <label>
           <p>Birthday:</p>
-          <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD">
+          <input type="text" formControlName="birthday" id='birthday' placeholder="YYYY/MM/DD">
           <div *ngIf="submitted && userForm.controls.birthday.errors" class="invalid-feedback">
             <div *ngIf="userForm.controls.birthday.errors.required">Date of Birthday is required</div>
             <span *ngIf="userForm.controls.birthday.errors.notSuchDate">Not such date, valid date format: YYYY/MM/DD</span>
@@ -35,7 +42,7 @@
         </label>
         <label>
           <p>Date of login:</p>
-          <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY">
+          <input type="text" formControlName="dateOfLogin" id="dateOfLogin" placeholder="DD MMMM YYYY">
           <div *ngIf="submitted && userForm.controls.dateOfLogin.errors" class="invalid-feedback">
             <div *ngIf="userForm.controls.dateOfLogin.errors.required">Date of login is required</div>
             <span *ngIf="userForm.controls.dateOfLogin.errors.notSuchDate">Not such date, valid date format: DD MMMM
@@ -50,7 +57,7 @@
         </label>
         <label>
           <p>Date of notification:</p>
-          <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY">
+          <input type="text" formControlName="dateOfNotification" id="dateOfNotification" placeholder="DD-MMM-YY">
           <div *ngIf="submitted && userForm.controls.dateOfNotification.errors" class="invalid-feedback">
             <div *ngIf="userForm.controls.dateOfNotification.errors.required">Date of notification is required</div>
             <span *ngIf="userForm.controls.dateOfNotification.errors.notSuchDate">Not such date, valid date format:
@@ -68,7 +75,4 @@
       </form>
     </div>
   </div>
-</div>
-<div *ngIf="adminRole">
- <app-admin-page></app-admin-page>
 </div>

@@ -14,6 +14,7 @@ import { notificationDateValidator } from '../validators/notificationDate.valida
 export class UserPageComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
+  adminRole = false;
   user;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) {}
@@ -26,6 +27,9 @@ export class UserPageComponent implements OnInit {
       dateOfLogin: ['', [Validators.required, loginDateValidator(' ')]],
       dateOfNotification: ['', [Validators.required, notificationDateValidator('-')]]
     });
+    if (this.user.role === 'admin') {
+      this.adminRole = true;
+    }
   }
 
   onSubmit() {

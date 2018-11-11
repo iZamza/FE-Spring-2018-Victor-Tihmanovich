@@ -45,7 +45,10 @@ export class UserPageComponent implements OnInit {
     'dateOfBirth': validInfo.birthday,
     'dateOfFirstLogin': validInfo.dateOfLogin,
     'dateOfNextNotification': validInfo.dateOfNotification,
-    'information': this.user.information};
+    'information': this.user.information,
+    'password': this.user.password,
+    'role': 'user'};
+    this.userService.editUser(this.userService.currentUser().id, this.user);
   }
 
   logout() {

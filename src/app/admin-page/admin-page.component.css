@@ -19,15 +19,15 @@ h2 {
 }
 
 span {
-    max-width: 200px;
-    display: inline-block;
-  }
+  max-width: 200px;
+  display: inline-block;
+}
 
-  input {
-    width: 100%;
-    border-radius: 3px;
-    border: solid 1px grey;
-  }
+input {
+  width: 100%;
+  border-radius: 3px;
+  border: solid 1px grey;
+}
 
 .invalid-feedback {
   color: red;
@@ -44,7 +44,15 @@ span {
 
 .search-wrapper {
   overflow: auto;
-  max-height: 300px;
+  max-height: 530px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.update-list{
+  min-height: 25px;
+  margin: 3px auto;
 }
 
 .user-from-list {
@@ -74,7 +82,7 @@ span {
   width: 99%;
 }
 
-.buttonGr{
+.buttonGr {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -96,29 +104,30 @@ button>a {
   text-decoration: none;
 }
 
-button.editBtn {
+button.editBtn, button.update-list {
   background-color: #ff9800ad;
 }
 
-button.newBtn{
+button.newBtn {
   background-color: #008000b3;
 }
 
-button.deleteBtn{
+button.deleteBtn {
   background-color: #ff000078;
 }
 
-.editBtn:hover{
+.editBtn:hover, button.update-list:hover {
   background-color: #ff9e00;
 }
 
-.newBtn:hover{
+.newBtn:hover {
   background-color: #00e200b3;
 }
 
-.deleteBtn:hover{
+.deleteBtn:hover {
   background-color: rgb(177, 14, 192);
 }
+
 .change-area {
   flex: 1 1 50%;
   margin-left: 10px;
@@ -154,6 +163,11 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
   flex-basis: 100%;
+}
+
+.myDropper{
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

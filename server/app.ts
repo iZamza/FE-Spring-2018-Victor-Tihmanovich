@@ -19,6 +19,7 @@ const delay = require('express-delay');
 app.use(function(__, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 });
 app.use(delay(1000));
@@ -56,7 +57,6 @@ app.get('/users/:id', (request, response) => {
 
 app.post('/users/add', (request, response) => {
   const newUser = request.body;
-  console.log(newUser);
   users.push(newUser);
 
   response.send(newUser);
@@ -76,29 +76,19 @@ app.post('/users/login', (request, response) => {
   }
 });
 
-app.put('/users/:id', (request, response) => {
-  const user = findUser(request);
-
-  if (!user) {
-    userNotFoundError(response);
-  } else {
-    const userIndex = users.findIndex((u: User) => u.id === request.params.id);
-    users[userIndex] = request.body;
-
-    response.send(users[userIndex]);
+app.post('/users/edit', (request, response) => {
+  users = users.filter((u: User) => u.id !== request.body.id);
+  const editedUser = request.body.object;
+  users.push(editedUser);
+    response.send(editedUser);
   }
-});
+);
 
-app.delete('/users/:id', (request, response) => {
-  const user = findUser(request);
-
-  if (!user) {
-    userNotFoundError(response);
-  } else {
-    users = users.filter((u: User) => u.id !== request.params.id);
+app.post('/users/delete', (request, response) => {
+    users = users.filter((u: User) => u.id !== request.body.id);
     response.send(users);
   }
-});
+);
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);

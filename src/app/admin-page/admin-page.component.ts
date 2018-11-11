@@ -13,22 +13,34 @@ export class AdminPageComponent implements OnInit {
   userForm: FormGroup;
   users;
   selectedUser;
+  newUser = true;
+  changedUser = false;
+
   constructor(private searchService: SearchService,
               private formBuilder: FormBuilder,
-              private adminService: AdminService) {}
+              private adminService: AdminService) {
+              }
 
   ngOnInit() {
+    this.refreshUserList();
+    this.userForm = this.formBuilder.group({
+      id: '',
+      username: '',
+      password: '',
+      dateOfBirth: '',
+      dateOfFirstLogin: '',
+      dateOfNextNotification: '',
+      information: '',
+      role: ''
+    });
+  }
+
+  refreshUserList() {
     this.searchService.getUsers().subscribe(
       data => {
         this.users = data;
       }
     );
-    this.userForm = this.formBuilder.group({
-      name: '',
-      birthday: '',
-      dateOfLogin: '',
-      dateOfNotification: ''
-    });
   }
 
   filterUser() {
@@ -47,30 +59,71 @@ export class AdminPageComponent implements OnInit {
 
   activeUser(event) {
     this.selectedUser = this.users[event.target.parentElement.dataset.index];
-    helpers.changeInputValue(this.selectedUser.username,
-            this.selectedUser.dateOfBirth,
-            this.selectedUser.dateOfFirstLogin,
-            this.selectedUser.dateOfNextNotification);
+    const activeUser = this.selectedUser;
+    const id = activeUser.id;
+    const username = activeUser.username;
+    const password = activeUser.password;
+    const dateOfBirth = activeUser.dateOfBirth;
+    const dateOfFirstLogin = activeUser.dateOfFirstLogin;
+    const dateOfNextNotification = activeUser.dateOfNextNotification;
+    const information = activeUser.information;
+    const role = activeUser.role;
+
+    helpers.changeInputValue(
+            username,
+            dateOfBirth,
+            dateOfFirstLogin,
+            dateOfNextNotification,
+            password,
+            information,
+            role,
+            id);
     event.stopPropagation();
-    const name = this.selectedUser.username;
-    const birthday = this.selectedUser.dateOfBirth;
-    const login = this.selectedUser.dateOfFirstLogin;
-    const notification = this.selectedUser.dateOfNextNotification;
-    this.userForm.value.name = name;
-    this.userForm.value.birthday = birthday;
-    this.userForm.value.dateOfLogin = login;
-    this.userForm.value.dateOfNotification = notification;
+    this.updateForm(username,
+      dateOfBirth,
+      dateOfFirstLogin,
+      dateOfNextNotification,
+      password,
+      information,
+      role,
+      id);
+      this.newUser = false;
+      this.changedUser = true;
+      this.refreshUserList();
   }
+
+  updateForm(username, dateOfBirth, dateOfFirstLogin, dateOfNextNotification, password, information, role, id) {
+    const formValue = this.userForm.value;
+    formValue.id = id;
+    formValue.username = username;
+    formValue.password = password;
+    formValue.dateOfBirth = dateOfBirth;
+    formValue.dateOfFirstLogin = dateOfFirstLogin;
+    formValue.dateOfNextNotification = dateOfNextNotification;
+    formValue.information = information;
+    formValue.role = role;
+    console.log(`${formValue.username} was selected`);
+    }
 
   createUser() {
     this.adminService.createUser(this.userForm.value);
+    this.toDefault();
   }
 
   editUser() {
-    this.adminService.editUser(this.userForm.value);
+    this.adminService.editUser(this.selectedUser.id, this.userForm.value);
+    this.toDefault();
   }
 
   deleteUser() {
     this.adminService.deleteUser(this.selectedUser.id);
+    this.toDefault();
+  }
+
+  toDefault() {
+    helpers.resetForm();
+    this.newUser = true;
+    this.changedUser = false;
+    this.refreshUserList();
   }
 }

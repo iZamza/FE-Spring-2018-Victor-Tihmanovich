@@ -3,6 +3,7 @@
   <div class="user-search">
     <div class='myDropper'>
       <input type='text' id='filterInput' placeholder="search User" (keyup)='filterUser()'>
+      <button class='update-list' (click)='refreshUserList()'>Refresh users</button>
       <div class='search-wrapper'>
         <div class='user-from-list' *ngFor='let user of users; let i = index' [attr.data-index]='i' (click)='activeUser($event)'>
           <p>Name of user: {{ user.username }}</p>
@@ -17,27 +18,47 @@
   <div class="change-area">
     <div>
       <h3>If you want change user data, or add new user, use this form</h3>
-      <form [formGroup]="userForm">
+      <form [formGroup]="userForm" id="adminForm">
+        <label>
+          <p>Id:</p>
+          <input type="text" formControlName="id" id='id'>
+        </label>
         <label>
           <p>User name:</p>
-          <input type="text" formControlName="name" id='name'>
+          <input type="text" formControlName="username" id='name' placeholder='Name of user'>
         </label>
         <label>
-          <p>Birthday:</p>
-          <input type="text" formControlName="birthday" id='birthday' placeholder="YYYY/MM/DD">
+          <p>Password:</p>
+          <input type="text" formControlName="password" id='password' placeholder='User password'>
         </label>
         <label>
-          <p>Date of login:</p>
-          <input type="text" formControlName="dateOfLogin" id="dateOfLogin" placeholder="DD MMMM YYYY">
+          <p>Date of Birthday:</p>
+          <input type="text" formControlName="dateOfBirth" id='birthday' placeholder="YYYY/MM/DD">
         </label>
         <label>
-          <p>Date of notification:</p>
-          <input type="text" formControlName="dateOfNotification" id="dateOfNotification" placeholder="DD-MMM-YY">
+          <p>Date of first login:</p>
+          <input type="text" formControlName="dateOfFirstLogin" id="dateOfLogin" placeholder="DD MMMM YYYY">
+        </label>
+        <label>
+          <p>Date of next notification:</p>
+          <input type="text" formControlName="dateOfNextNotification" id="dateOfNotification" placeholder="DD-MMM-YY">
+        </label>
+        <label>
+          <p>Information:</p>
+          <input type="text" formControlName="information" id="information" placeholder="some describe user">
+        </label>
+        <label>
+          <p>Role: </p>
+          <input list="CsRole" formControlName="role" id="role" placeholder="role of user">
+          <datalist id='CsRole'>
+            <option value="admin">
+            <option value="user">
+          </datalist>
         </label>
         <div class="buttonGr">
-          <button type="submit" (click)='createUser()' class="newBtn">New user</button>
-          <button type="submit" (click)='editUser()' class="editBtn">Edit user</button>
-          <button type="submit" (click)='deleteUser()' class="deleteBtn">Delete user</button>
+          <button *ngIf='newUser' type="submit" (click)='createUser()' class="newBtn">New user</button>
+          <button *ngIf='changedUser' type="submit" (click)='editUser()' class="editBtn">Edit user</button>
+          <button *ngIf='changedUser' type="submit" (click)='deleteUser()' class="deleteBtn">Delete user</button>
         </div>
       </form>
     </div>

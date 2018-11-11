@@ -47,4 +47,8 @@ export class UserPageComponent implements OnInit {
     'dateOfNextNotification': validInfo.dateOfNotification,
     'information': this.user.information};
   }
+
+  logout() {
+  this.userService.logout();
+  }
 }

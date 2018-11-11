@@ -7,4 +7,8 @@ export class UserService {
     currentUser() {
         return JSON.parse(localStorage.getItem('currentUser'));
     }
+
+    logout() {
+        localStorage.removeItem('currentUser');
+    }
 }

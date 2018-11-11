@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { nameValidator } from '../validators/name.validator';
-import { birthdayDateValidator } from '../validators/birthdayDate.validator';
-import { loginDateValidator } from '../validators/loginDate.validator';
-import { notificationDateValidator } from '../validators/notificationDate.validator';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AdminService } from '../services/admin.service';
 import * as helpers from './helper';
 
 @Component({
@@ -14,10 +11,11 @@ import * as helpers from './helper';
 })
 export class AdminPageComponent implements OnInit {
   userForm: FormGroup;
-  submitted = false;
   users;
   selectedUser;
-  constructor(private searchService: SearchService, private formBuilder: FormBuilder) {}
+  constructor(private searchService: SearchService,
+              private formBuilder: FormBuilder,
+              private adminService: AdminService) {}
 
   ngOnInit() {
     this.searchService.getUsers().subscribe(
@@ -26,10 +24,10 @@ export class AdminPageComponent implements OnInit {
       }
     );
     this.userForm = this.formBuilder.group({
-      name: ['', Validators.required, nameValidator],
-      birthday: ['', [Validators.required, birthdayDateValidator('/')]],
-      dateOfLogin: ['', [Validators.required, loginDateValidator(' ')]],
-      dateOfNotification: ['', [Validators.required, notificationDateValidator('-')]]
+      name: '',
+      birthday: '',
+      dateOfLogin: '',
+      dateOfNotification: ''
     });
   }
 
@@ -64,50 +62,15 @@ export class AdminPageComponent implements OnInit {
     this.userForm.value.dateOfNotification = notification;
   }
 
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.userForm.invalid) {
-      console.log(this.userForm.value);
-      return;
-    }
-    console.log(this.userForm.value);
-    console.log('success');
-
-    // this.authenticationService.login(this.autharizationForm.controls.username.value, this.autharizationForm.controls.password.value)
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate(['/']);
-    //     },
-    //     error => {
-    //       this.error = error;
-    //       this.isLoading = false;
-    //     });
+  createUser() {
+    this.adminService.createUser(this.userForm.value);
   }
-  // createUser() {
-  //   this.submitted = true;
-  //   if (this.userForm.invalid) {
-  //     return;
-  //   }
-  //   alert('created');
-  // }
 
-  // editUser() {
-  //   this.submitted = true;
-  //   if (this.userForm.invalid) {
-  //     return;
-  //   }
-  //   alert('edited');
-  // }
+  editUser() {
+    this.adminService.editUser(this.userForm.value);
+  }
 
-  // deleteUser() {
-  //   this.submitted = true;
-  //   if (this.userForm.invalid) {
-  //     return;
-  //   }
-  // <button type="submit" [disabled]="loading" (submit)='createUser()' class="newBtn">New user</button>
-  //         <button type="submit" [disabled]="loading" (submit)='editUser()' class="editBtn">Edit user</button>
-  //         <button type="submit" [disabled]="loading" (click)='deleteUser()' class="deleteBtn">Delete user</button>
-  //   alert('deleted');
-  // }
+  deleteUser() {
+    this.adminService.deleteUser(this.selectedUser.id);
+  }
 }

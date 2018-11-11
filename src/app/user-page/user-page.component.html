@@ -5,7 +5,7 @@
     <p>Your first login: <br>{{user.dateOfFirstLogin}}</p>
     <p>You will get notification: <br>{{user.dateOfNextNotification}}</p>
     <p>And this describe you: <br>{{user.information}}</p>
-    <p><a [routerLink]="['/authorization']">Logout</a></p>
+    <p><a [routerLink]="['/authorization']" (click)='logout()'>Logout</a></p>
   </div>
   <div class="storage-area">
     <div>
